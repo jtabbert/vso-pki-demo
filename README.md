@@ -13,6 +13,50 @@ Helm Version: v3.12.3
 
 To begin first Complete The VSO tutorial (https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator) up until "Deploy and sync a secret".  
 
+Next Configure PKI secrets engine
+
+```shell-session
+kubectl exec --stdin=true --tty=true vault-0 -n vault -- /bin/sh
+```
+
+```shell-session
+vault secrets enable pki
+```
+
+```shell-session
+vault secrets tune -max-lease-ttl=8760h pki
+```
+
+```shell-session
+vault write pki/root/generate/internal \
+    common_name=example.com \
+    ttl=8760h
+```
+
+```shell-session
+vault write pki/config/urls \
+    issuing_certificates="http://vault.default:8200/v1/pki/ca" \
+    crl_distribution_points="http://vault.default:8200/v1/pki/crl"
+```
+
+```shell-session
+vault write pki/roles/example-dot-com \
+    allowed_domains=example.com \
+    allow_subdomains=true \
+    max_ttl=72h
+```
+```shell-session
+vault policy write pki - <<EOF
+path "pki*"                        { capabilities = ["create", "read", "update", "list"] }
+EOF
+```
+
+```shell-session
+exit
+```
+
+Next Apply the 2 yaml files from this repo...  
+
 
 
 Now we will enable ingress on Minikube
