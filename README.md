@@ -55,8 +55,21 @@ EOF
 exit
 ```
 
-Next Apply the 2 yaml files from this repo...  
+**Next Apply the 2 yaml files from this repo... ** 
 
+```shell-session
+kubectl apply -f vault-pki-secret.yaml
+```
+
+```shell-session
+kubectl apply -f vault-auth-static2.yaml
+```
+
+Create the issuer k8s service account
+
+```shell-session
+kubectl create service account issuer
+```
 
 
 Now we will enable ingress on Minikube
