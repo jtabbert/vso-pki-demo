@@ -10,7 +10,12 @@ Ubuntu Version 22.04 LTS
 Helm Version: v3.12.3
 ```
 
-First we will enable ingress on Minikube
+
+To begin first Complete The VSO tutorial (https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator) up until "Deploy and sync a secret".  
+
+
+
+Now we will enable ingress on Minikube
 
 ```shell-session
 minikube addons enable ingress
