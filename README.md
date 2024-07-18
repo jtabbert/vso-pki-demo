@@ -1,4 +1,4 @@
-# vso-pki-demo
+# HashiCorp Vault Secrets Operator (VSO) PKI Tutorial 
 
 The purpose of this tutorial is to show automated certificate rotation with a working example.  Here we will generate a TLS certificate and apply this to the ngnix sample hello-world application
 
