@@ -55,15 +55,60 @@ EOF
 exit
 ```
 
-**Next Apply the 2 yaml files from this repo... ** 
+**Next Apply the 2 yaml files from this repo... **
 
 ```shell-session
-kubectl apply -f vault-pki-secret.yaml
+cat > vault-auth-static2.yaml <<EOF 
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: static-auth2
+  namespace: default
+spec:
+  method: kubernetes
+  mount: demo-auth-mount
+  kubernetes:
+    role: issuer
+    serviceAccount: issuer
+    audiences:
+      - vault
+EOF
 ```
 
 ```shell-session
 kubectl apply -f vault-auth-static2.yaml
 ```
+
+```shell-session
+cat > vault-pki-secret.yaml <<EOF 
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultPKISecret
+metadata:
+  name: pki-test1
+  namespace: default
+spec:
+  vaultAuthRef: static-auth2
+  namespace: default
+  mount: pki
+  role: example-dot-com
+  destination:
+    create: true
+    name: demo-example-com-tls
+    type: kubernetes.io/tls
+  commonName: demo.example.com
+  format: pem
+  revoke: true
+  clear: true
+  expiryOffset: 30s
+  ttl: 5m
+EOF
+```
+
+```shell-session
+kubectl apply -f vault-pki-secret.yaml
+```
+
+
 
 Create the issuer k8s service account
 
