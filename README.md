@@ -11,7 +11,7 @@ Helm Version: v3.12.3
 ```
 
 
-To begin first Complete The VSO tutorial (https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator) up until "Deploy and sync a secret".  
+**To begin first Complete The VSO tutorial** (https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator) **up until "Deploy and sync a secret".**  
 
 Next Configure PKI secrets engine
 
