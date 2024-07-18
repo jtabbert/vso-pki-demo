@@ -52,6 +52,14 @@ EOF
 ```
 
 ```shell-session
+vault write auth/demo-auth-mount/role/issuer \
+    bound_service_account_names=issuer \
+    bound_service_account_namespaces=default \
+    policies=pki \
+    ttl=20m
+```
+
+```shell-session
 exit
 ```
 
