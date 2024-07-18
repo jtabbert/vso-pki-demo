@@ -63,7 +63,7 @@ vault write auth/demo-auth-mount/role/issuer \
 exit
 ```
 
-**Next Apply the 2 yaml files from this repo... **
+**Now we setup the authentication for VSO & create the PKI Secret**
 
 ```shell-session
 cat > vault-auth-static2.yaml <<EOF 
