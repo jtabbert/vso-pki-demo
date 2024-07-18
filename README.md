@@ -1,6 +1,6 @@
 # vso-pki-demo
 
-The purpose of this tutorial is to build on what we had accomplished in the last exercise.  Here we will generate a TLS certificate and apply this to the ngnix sample hello-world application
+The purpose of this tutorial is to show automated certificate rotation with a working example.  Here we will generate a TLS certificate and apply this to the ngnix sample hello-world application
 
 These are the software versions used in this tutorial
 
