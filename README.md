@@ -113,7 +113,7 @@ kubectl apply -f vault-pki-secret.yaml
 Create the issuer k8s service account
 
 ```shell-session
-kubectl create service account issuer
+kubectl create serviceaccount issuer
 ```
 
 
