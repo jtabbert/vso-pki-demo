@@ -1,0 +1,21 @@
+name: inspect-jwt
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'terraform/**'
+      - '*.md'
+jobs:
+  token-job:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: self-hosted
+    name: Run Step 1
+    steps:
+      - name: Get JWT
+        id: auth-token
+        run: |
+            export TOKEN=$(curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL")
+            echo $TOKEN | jq .value | base64
